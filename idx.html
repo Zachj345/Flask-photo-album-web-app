@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title {%block title%} {%endblock%}>Homepage</title>
+  </head>
+  <head>
+    <style>
+      nav a {
+        color: blanchedalmond;
+        margin-left: 60px;
+        font-size: 3em;
+        text-decoration: none;
+      }
+      a:hover {
+        color: darkseagreen;
+      }
+      .content {
+        font-size: 28px;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      form {
+        text-align: center;
+      }
+    </style>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('photos') }}">Photos</a>
+    </nav>
+    <hr />
+  </head>
+
+  <body style="background: plum">
+    <div class="content">
+      <i> Lets upload some pictures shall we?</i>
+    </div>
+
+    <hr />
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="img" />
+
+      <input
+        style="background: teal; height: 28px; width: 120px"
+        type="submit"
+        value="Submit"
+      />
+    </form>
+    <br />
+    <br />
+  </body>
+</html>

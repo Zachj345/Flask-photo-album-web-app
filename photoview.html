@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to your photo album</title>
+  </head>
+  <head>
+    <style>
+      nav a {
+        color: blanchedalmond;
+        margin-left: 60px;
+        font-size: 3em;
+        text-decoration: none;
+      }
+      a:hover {
+        color: darkseagreen;
+      }
+
+      .pics {
+        height: 50vh;
+        object-fit: cover;
+        width: 70vh;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .parent {
+        padding: 20px;
+        width: 100%;
+        margin: auto;
+      }
+      figure {
+        float: left;
+      }
+
+      figure figcaption {
+        text-align: center;
+      }
+    </style>
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('photos') }}">Photos</a>
+    </nav>
+    <hr />
+  </head>
+  <body style="background: plum">
+    <h1 style="font-family: cursive; text-align: center">
+      Welcome to your photo album
+    </h1>
+    <h5 style="font-family: sans-serif; text-align: center">
+      you should be able to view your uploaded photos below
+    </h5>
+    <hr />
+
+    <section class="parent">
+      {%for i in album%}
+      <figure>
+        <img
+          class="pics"
+          src="{{ url_for('static', filename=i.name) }}"
+          alt="no image available sorry"
+        />
+
+        <figcaption>
+          <b>
+            <i>
+              {%set picname = i.name.split('.')[0]%} {{ picname | replace('_', '
+              ')| title }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </i></b
+          >
+          <a
+            href="/delete/{{i.id}}"
+            style="
+              font-family: Impact, Haettenschweiler, 'Arial Narrow Bold',
+                sans-serif;
+              font-size: 15px;
+            "
+            >Delete Image</a
+          >
+        </figcaption>
+      </figure>
+      {%endfor%}
+    </section>
+  </body>
+</html>
